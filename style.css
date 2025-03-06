@@ -16,7 +16,7 @@ body {
 .grid-container {
     width: 500px;
     height: 500px;
-    border: solid red;
+    border: solid green;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
