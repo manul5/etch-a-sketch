@@ -1,4 +1,5 @@
 function makeGrid(size=16) {
+    randomColor = false
     let grid = document.querySelector('.grid-container')
     for (let i = 0; i < size; i++) {
         let row = document.createElement('div')
@@ -16,14 +17,17 @@ function makeGrid(size=16) {
 }
 
 function cleanGrid() {
+    randomColor = false
     let grid = document.querySelector('.grid-container')
     grid.innerHTML = ''
 }
 
 let size = 16
+let randomColor = false
 
 const btn = document.querySelector('.button')
 const btn2 = document.querySelector('.button-2')
+const btn3 = document.querySelector('.button-3')
 
 btn2.addEventListener('click', () => {
     cleanGrid()
@@ -38,6 +42,35 @@ btn.addEventListener('click', () => {
         size = temp
         cleanGrid()
         makeGrid(size)
+    }
+})
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+btn3.addEventListener('click', () => {
+    if (!randomColor) {
+        randomColor = true
+        let blocks = document.querySelectorAll('.grid-element')
+        blocks.forEach(element => {
+            element.addEventListener('mouseover', (e) => {
+                element.setAttribute('style', 'background-color: '+ getRandomColor())
+            })
+        });
+    }else {
+        randomColor = false
+        let blocks = document.querySelectorAll('.grid-element')
+        blocks.forEach(element => {
+            element.addEventListener('mouseover', (e) => {
+                element.setAttribute('style', 'background-color: black')
+            })
+        });
     }
 })
 
